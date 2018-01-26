@@ -11,7 +11,7 @@ me = singleton.SingleInstance()
 client = discord.Client()
 
 @client.event
-async def on_ready():
+async def on_ready(): #prints log in info
         print("Logged in as")
         print(client.user.name)
         print(client.user.id)
