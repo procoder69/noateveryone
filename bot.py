@@ -3,9 +3,11 @@ import asyncio
 import random
 import pickle
 import os
+from tendo import singleton
 from profanities import profs
 from token import tok
 
+me = singleton.SingleInstance()
 client = discord.Client()
 
 @client.event
@@ -25,5 +27,4 @@ async def on_message(message):
                         await client.send_message(message.channel, "profanities are not allowed on this server")
                         await client.delete_message(message)
 
-client.run(tok)
-
+tok()
