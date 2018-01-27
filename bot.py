@@ -23,7 +23,7 @@ async def on_message(message):
                 await client.delete_message(message)
 
         for word in profs:
-                if word in message.content.join([x if ord(x) < 128 for x in string]).lower(): #deletes any message that contains profanity
+                if word in message.content.lower(): #deletes any message that contains profanity
                         await client.send_message(message.channel, "profanities are not allowed on this server")
                         await client.delete_message(message)
 
