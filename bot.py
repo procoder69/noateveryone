@@ -18,13 +18,13 @@ async def on_ready(): #prints log in info
 
 @client.event
 async def on_message(message):
-        if "@everyone".lower() in message.content: #deletes any message that contains the string @everyone
-                await client.send_message(message.channel, "@ everyone is disabled on this server")
+        if message.mention_everyone: #deletes any message that contains the string @everyone
+                await client.send_message(message.channel, "\\@everyone is disabled on this server")
                 await client.delete_message(message)
 
-        for word in profs:
-                if word in message.content.lower(): #deletes any message that contains profanity
-                        await client.send_message(message.channel, "profanities are not allowed on this server")
-                        await client.delete_message(message)
+        stripped = "".join([x for x in message.content if ord(x) < 128]).lower()
+        if any([word in stripped for word in profs]): #deletes any message that contains profanity
+                await client.send_message(message.channel, "profanities are not allowed on this server")
+                await client.delete_message(message)
 
 client.run(tok)
